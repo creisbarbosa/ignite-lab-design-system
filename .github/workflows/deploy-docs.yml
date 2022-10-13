@@ -19,7 +19,7 @@ jobs:
 
 # Primeiro comando: O Chechout usará o action/checout@v3 para baixar a versão atualizada do código
 
-    setps:
+    steps:
       - name: Checkout
         uses: actions/checkout@v3
 
