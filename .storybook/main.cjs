@@ -14,5 +14,13 @@ module.exports = {
   },
   "features": {
     "storyStoreV7": true
-  }
+  },
+  // Se o repositório estiver dentro de outra dependência no github, a ação abaixo será necessária para fazer o storybook entender a url, se ele já for o repositório raiz ou uma página pesso, não será necessário realizar esta tarefa.
+
+  // viteFinal: (config, {configType}) => {
+  //   if (configType === 'PRODUCTION') {
+  //     config.base = '/nome-do-repositorio/'
+  //   }
+  //    return config
+  // }
 }

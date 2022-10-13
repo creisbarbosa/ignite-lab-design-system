@@ -1,0 +1,44 @@
+# Toda vez que eu enviar uma nova versão do meu cógico para o github, ele publicará meu storybook dentro do meu githubpages e depois fazer o deploy
+# Aqui é configuração do serviço / workflow de integração contínua CI/CD
+# É uma forma de disparar ações a cada vez que temos uma nova funcionalidade no nosso código.
+
+# Aqui é utilizada a syntax do github actions
+
+name: Deploy Storybook
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+# Agora são definidos os comandos que serão executados para que o deploy seja realizados ↓
+
+# Primeiro comando: O Chechout usará o action/checout@v3 para baixar a versão atualizada do código
+
+    setps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+# A action Setup Node.js que utiliza ou ação que instala o node no ambiente ubunto ↓
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+# O comando npm ci, que nada maais é o npm install feito para ambientes não interativos, vai instalar as dependências de produção do projeto sem tentar atualizar nada no pacote json
+
+      - name: Install Dependencies
+        run: npm ci --legacy-peer-deps # Vai reolver os avisos de intalação do Storybook em conflito com o npm 8
+
+      - name: Buil Storybook
+        run: npm run buil-storybook
+
+      - name: Deploy Storybook
+        run: npm run deploy-storybook -- --ci --existing-output-dir=storybook-static
+        env:
+          GH_TOKEN: ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}
