@@ -8,7 +8,7 @@ export interface TextInputRootProps {
 
 function TextInputRoot(props: TextInputRootProps) {
     return (
-        <div className='flex items-center gap-3 h-12 py-4 px-3 rounded bg-gray-800 w-full focus-within:ring-2 ring-cyan-300'>
+        <div className='flex items-center gap-3 h-12 py-4 px-3 rounded bg-gray-800 w-full focus-within:ring-2 ring-cyan-300 group'>
             {props.children}
         </div>
     )
@@ -22,7 +22,7 @@ export interface TextInputIconProps {
 
 function TextInputIcon(props: TextInputIconProps) {
     return(
-        <Slot className="w-6 h-6 text-gray-400">
+        <Slot className="w-6 h-6 text-gray-400 group-focus-within:text-cyan-300">
             {props.children}
         </Slot>
     )

@@ -14,8 +14,12 @@ module.exports = {
     "builder": "@storybook/builder-vite"
   },
   "features": {
-    "storyStoreV7": true
+    "storyStoreV7": true,
+    "interactionsDebugger": true
   },
+  "staticDirs": [
+    "../public"
+  ],
 
   // Se o repositório estiver dentro de outra dependência no github, a ação abaixo será necessária para fazer o storybook entender a url, se ele já for o repositório raiz ou uma página pesso, não será necessário realizar esta tarefa.
 
